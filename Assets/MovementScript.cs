@@ -13,19 +13,16 @@ public class MovementScript : MonoBehaviour
     private Rigidbody2D rb;                 // referenced Rigidbody component
     private bool isGrounded;                // variable if player is grounded or not
 
-    //audio section
     public AudioClip jump;
-    public AudioClip backgroundMusic;
-
-    public AudioSource sfxPlayer;
-    public AudioSource musicPlayer;
-
+    AudioSource playerSFX;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();   //get Rigidbody attached to player
+        playerSFX = rb.GetComponent<AudioSource>();
     }
+
 
     // Update is called once per frame
     void Update()
@@ -37,16 +34,23 @@ public class MovementScript : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, checkRadius, groundLayer);
 
         //Jumping Logic
+       
+        
+
         if (isGrounded && Input.GetKeyDown(KeyCode.Space))
         {
 
             Jump();
+            playerSFX.PlayOneShot(jump);
+
         }
+
     }
 
 
     private void Jump()
     {
+        
         // add upward force to jump
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
     }

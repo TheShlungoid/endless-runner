@@ -14,13 +14,13 @@ public class parallax : MonoBehaviour
     {
         player = GameObject.Find("Player");
         rend = GetComponent<Renderer>();
-        playerstartpos = (player.transform.position.x) * speed;
+        playerstartpos = player.transform.position.x;
     }
 
     // Update is called once per frame
     void Update()
     {
-        float offset = ( player.transform.position.x -  playerstartpos );  
+        float offset = ( player.transform.position.x -  playerstartpos ) * speed;  
         rend.material.SetTextureOffset("_MainTex", new Vector2(offset, 0f));
     }
 }
