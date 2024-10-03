@@ -15,13 +15,16 @@ public class MovementScript : MonoBehaviour
 
     public AudioClip jump;
     AudioSource playerSFX;
-
+    Animator anim;
+    
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();   //get Rigidbody attached to player
         playerSFX = rb.GetComponent<AudioSource>();
+        anim = GetComponent<Animator>();
     }
+
 
 
     // Update is called once per frame
@@ -35,7 +38,7 @@ public class MovementScript : MonoBehaviour
 
         //Jumping Logic
        
-        
+        anim.SetBool("IsGrounded", isGrounded);
 
         if (isGrounded && Input.GetKeyDown(KeyCode.Space))
         {
