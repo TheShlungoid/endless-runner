@@ -38,12 +38,12 @@ public class MovementScript : MonoBehaviour
 
         //Jumping Logic
        
-        anim.SetBool("IsGrounded", isGrounded);
+        anim.SetBool("isGround", isGrounded);
 
         if (isGrounded && Input.GetKeyDown(KeyCode.Space))
         {
-
             Jump();
+            //anim.SetTrigger("Jump");
             playerSFX.PlayOneShot(jump);
 
         }
